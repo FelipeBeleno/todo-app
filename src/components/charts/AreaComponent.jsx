@@ -52,8 +52,6 @@ export const AreaComponent = ({ data, options, range }) => {
         })
 
         newInfo = newInfo.filter(d => typeof d !== 'boolean').reverse()
-
-
         setNewData(newInfo)
     }, [range, data])
 
