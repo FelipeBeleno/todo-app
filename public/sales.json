@@ -1,0 +1,42 @@
+[
+    {
+        "Bogota": 1500000,
+        "fecha": "Mon Jun 19 2023 10:59:06 GMT-0500 (hora estándar de Colombia)",
+        "Medellin": 1250000
+    },
+    {
+        "Bogota": 1200000,
+        "fecha": "Sun Jun 18 2023 10:59:06 GMT-0500 (hora estándar de Colombia)",
+        "Medellin": 2000000
+    },
+    {
+        "Bogota": 1400000,
+        "fecha": "Sat Jun 17 2023 10:59:06 GMT-0500 (hora estándar de Colombia)",
+        "Medellin": 1740000
+    },
+    {
+        "Bogota": 2200000,
+        "fecha": "Fri Jun 16 2023 10:59:06 GMT-0500 (hora estándar de Colombia)",
+        "Medellin": 1110000
+    },
+    {
+        "Bogota": 1800000,
+        "fecha": "Thu Jun 15 2023 10:59:06 GMT-0500 (hora estándar de Colombia)",
+        "Medellin": 1245000
+    },
+    {
+        "Bogota": 3250000,
+        "fecha": "Wed Jun 14 2023 10:59:06 GMT-0500 (hora estándar de Colombia)",
+        "Medellin": 2574000
+    },
+    {
+        "Bogota": 2250000,
+        "fecha": "Tue Jun 13 2023 10:59:06 GMT-0500 (hora estándar de Colombia)",
+        "Medellin": 3695000
+    },
+    {
+        "Bogota": 1750000,
+        "fecha": "Mon Jun 12 2023 10:59:06 GMT-0500 (hora estándar de Colombia)",
+        "Medellin": 900000
+    }
+]

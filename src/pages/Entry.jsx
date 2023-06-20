@@ -108,7 +108,7 @@ export const Entry = () => {
                 horizontal: 'right'
             }
         })
-        navigate('/dasboard');
+        navigate('/dashboard');
 
 
 
@@ -130,7 +130,7 @@ export const Entry = () => {
                 horizontal: 'right'
             }
         })
-        navigate('/dasboard');
+        navigate('/dashboard');
 
     }
 

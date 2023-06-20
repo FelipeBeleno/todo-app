@@ -8,9 +8,10 @@ export const EntryList = ({ status }) => {
 
     return (
         <Paper sx={{
-            height: 'calc(100vh - 250px)',
+            height: '100%',
             overflow: 'auto',
-            padding: '1px 5px'
+            padding: '1px 5px',
+            boxShadow:'none'
         }}>
             <List sx={{ opacity: 1, transition: 'all.3s' }}>
                 {

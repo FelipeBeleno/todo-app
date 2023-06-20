@@ -1,50 +1,18 @@
 import React from 'react'
 import AppIndex from '../pages/IndexApp'
-import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom'
+import {  Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { Entry } from '../pages/Entry';
 import { Box, Button, IconButton } from '@mui/material';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+//import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeTheme } from '../context/themeSlice';
-import { login, logout } from '../context/loginSlice';
+import { login } from '../context/loginSlice';
 import { Question } from '../pages/Question';
-
-const PrivateRoute = ({ children }) => {
-    // Función para simular la autenticación
-
-    const { login } = useSelector(state => state)
-    const isAuthenticated = () => {
-        // Verifica si el usuario está autenticado
-        // Devuelve true si está autenticado, o false en caso contrario
-        return login;
-    };
-
-    return isAuthenticated() ? (
-        children
-    ) : (
-        <Navigate to="/" />
-    );
-};
-
-
-const PublicRoute = ({ children }) => {
-
-    const { login } = useSelector(state => state)
-    const isAuthenticated = () => {
-
-        return login;
-    };
-
-    return !isAuthenticated() ? (
-        children
-    ) : (
-        <Navigate to="/dashboard" />
-    );
-};
-
+import { Charts } from '../pages/Charts';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
 
 
 export const Example = () => {
@@ -69,16 +37,17 @@ export const Example = () => {
 
 const router = createBrowserRouter([
     {
-        path: '/',
-        element: <PublicRoute> <Example /></PublicRoute>
+        path: '/charts',
+        element: <Charts />,
+        caseSensitive: true
     },
     {
         path: '/dashboard',
-        element: <PrivateRoute><AppIndex /></PrivateRoute>
+        element: <AppIndex />
     },
     {
         path: '/edit',
-        element: <PrivateRoute> <Entry /> </PrivateRoute>,
+        element: <Entry />,
         children: [
             {
                 path: ':id',
@@ -88,55 +57,76 @@ const router = createBrowserRouter([
     },
     {
         path: '/create',
-        element: <PrivateRoute> <Entry /> </PrivateRoute>
+        element: <Entry />
     },
     {
         path: '/question',
-        element: <PrivateRoute> <Question /></PrivateRoute>
+        element: <Question />
+    },
+    {
+        path:'/',
+        element: <Navigate to="/dashboard"/>
     },
     {
         path: '*',
-        element: <Navigate to={'/'} />
+        element:<Navigate to="/dashboard"/>
+
     }
 ])
 
 export const AppRoutes = () => {
 
     const dispatch = useDispatch()
-    const { theme, login } = useSelector(state => state)
+    const { theme } = useSelector(state => state)
     function changeThemeFn() {
+        localStorage.setItem('theme', JSON.stringify(!theme))
         dispatch(changeTheme(!theme))
+
     }
+
+
 
     return (<>
         <RouterProvider router={router} />
 
 
-            <IconButton
-                onClick={changeThemeFn}
-                sx={{ position: 'fixed', bottom: '1rem', right: '2rem' }} aria-label="delete" size="large">
-                {theme ?
-                    <WbSunnyIcon />
-                    :
-                    <DarkModeIcon fontSize="inherit" />
+        <IconButton
+            onClick={changeThemeFn}
+            sx={{ position: 'fixed', bottom: '1rem', right: '2rem' }} aria-label="delete" size="large">
+            {theme ?
+                <WbSunnyIcon />
+                :
+                <DarkModeIcon fontSize="inherit" />
+            }
+        </IconButton>
+
+
+        <IconButton
+            onClick={() => {
+
+                if (window.location.pathname === '/charts') {
+                    window.location.pathname = '/dashboard'
+                    return
                 }
-            </IconButton>
+
+                window.location.pathname = '/charts'
+
+            }}
+            sx={{ position: 'fixed', bottom: '4rem', right: '2rem' }} aria-label="delete" size="large">
             {
-                login &&
-                <>
-                    <IconButton
-                        onClick={() => dispatch(logout())}
-                        sx={{ position: 'fixed', bottom: '4rem', right: '2rem' }} aria-label="delete" size="large">
-                        <ExitToAppIcon />
-                    </IconButton>
-                    <IconButton
-                        onClick={() => { window.location.pathname="/question" }}
-                        sx={{ position: 'fixed', bottom: '7rem', right: '2rem' }} aria-label="delete" size="large">
-                        <HelpOutlineIcon />
-                    </IconButton>
-                </>
+                window.location.pathname === '/charts'
+                    ? <PlaylistAddCheckIcon />
+                    : <BarChartIcon />
             }
 
+        </IconButton>
+      {/* 
+       <IconButton
+            onClick={() => { window.location.pathname = "/question" }}
+            sx={{ position: 'fixed', bottom: '7rem', right: '2rem' }} aria-label="delete" size="large">
+            <HelpOutlineIcon />
+        </IconButton>
+      */} 
 
     </>
     )
